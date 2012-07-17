@@ -1,0 +1,28 @@
+# Introduction
+
+Butteur is a preprocessor to write beamers slides more easily by allowing you to use a more concise syntax. It was also an excuse for me to learn lex/yacc
+
+# Installation
+
+In a virtualenv or as root:
+
+    pip install git+git://github.com/Psycojoker/butteur.git
+
+You'll need to have the command "pdflatex" available.
+
+# Usage
+
+    butteur file.butt
+
+# Example
+
+    title the title of the document
+    author Myself master of the world
+
+    slide
+        this is the first line
+        you don't need to put a blank line between 2 lines
+        you can put \emph{raw latex here}
+
+    slide this slide has a title
+        and some content
