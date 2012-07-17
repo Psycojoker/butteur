@@ -26,3 +26,31 @@ You'll need to have the command "pdflatex" available.
 
     slide this slide has a title
         and some content
+
+# Result in .tex
+
+    \documentclass{beamer}
+    \usepackage[utf8]{inputenc}
+    \usepackage{verbatim}
+    \usepackage{ulem}
+    \usepackage{fancyvrb}
+    \usepackage{color}
+    \usepackage{tikz}
+
+    \begin{document}
+    \title{the title of the document}
+    \author{Myself master of the world}
+    \maketitle{}
+    \begin{frame}[fragile]{}
+        this is the first line
+
+        you don't need to put a blank line between 2 lines
+
+        you can put \emph{raw latex here}
+
+    \end{frame}
+    \begin{frame}[fragile]{this slide has a title}
+        and some content
+
+    \end{frame}
+    \end{document}
