@@ -14,6 +14,10 @@ template = r"""
 \usepackage{color}
 \usepackage{tikz}
 
+%- if theme
+\usetheme{<theme>}
+%- endif
+
 \begin{document}
 
 %- if title
@@ -42,6 +46,7 @@ template = r"""
 tokens = (
     'TITLE',
     'AUTHOR',
+    'THEME',
     'SLIDE',
     'LINE',
 )
@@ -58,6 +63,11 @@ def t_TITLE(t):
 def t_AUTHOR(t):
     r'author .+'
     t.value = t.value[7:]
+    return t
+
+def t_THEME(t):
+    r'theme .+'
+    t.value = t.value[6:]
     return t
 
 def t_SLIDE(t):
@@ -126,6 +136,10 @@ def p_expression_author(p):
     'expression : AUTHOR'
     p[0] = ('author', p[1])
 
+def p_expression_theme(p):
+    'expression : THEME'
+    p[0] = ('theme', p[1])
+
 def p_expression_line(p):
     'expression : LINE'
     p[0] = ('line', p[1])
@@ -155,11 +169,12 @@ def build_document(result):
     document = {
         "title": None,
         "author": None,
+        "theme": None,
         "slides": [],
     }
 
     for i in result:
-        if i[0] in ('title', 'author'):
+        if i[0] in ('title', 'author', 'theme'):
             #if document[i[0]] is not None:
                 #print("Warning: duplicated declaration of %s" % i[0])
             document[i[0]] = i[1]
