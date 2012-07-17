@@ -16,6 +16,7 @@ You'll need to have the command "pdflatex" available.
 
 # Example
 
+    theme Berlin
     title the title of the document
     author Myself master of the world
 
