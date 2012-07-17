@@ -6,7 +6,7 @@ Butteur is a preprocessor to write beamers slides more easily by allowing you to
 
 In a virtualenv or as root:
 
-    pip install git+git://github.com/Psycojoker/butteur.git
+    pip install butteur
 
 You'll need to have the command "pdflatex" available.
 
