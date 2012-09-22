@@ -189,6 +189,9 @@ def build_document(result):
         "slides": [],
     }
 
+    if result is None:
+        return document
+
     for i in result:
         if i[0] in ('title', 'author', 'theme'):
             #if document[i[0]] is not None:
