@@ -225,12 +225,14 @@ if __name__ == "__main__":
         print "Give me a filename!"
         sys.exit(1)
 
+    file_name = sys.argv[1]
+
     lexer = lex.lex()
     lexer.indentation = []
     parser = yacc.yacc(debug=1)
-    tree = parser.parse(open(sys.argv[1], "r").read().decode("Utf-8"))
+    tree = parser.parse(open(file_name, "r").read().decode("Utf-8"))
 
     document = build_document(tree)
     result = generate_latex(document)
-    open(sys.argv[1] + ".tex", "w").write(result.encode("Utf-8"))
-    os.system("pdflatex %s" % sys.argv[1] + ".tex")
+    open(file_name + ".tex", "w").write(result.encode("Utf-8"))
+    os.system("pdflatex %s" % file_name + ".tex")
