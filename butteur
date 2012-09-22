@@ -92,7 +92,7 @@ def t_SLIDE(t):
     return t
 
 def t_content_LINE(t):
-    r'\w.+'
+    r'[^ ].+'
     if not t.lexer.indentation:
         raise SyntaxError('invalid indentation')
     t.value = t.value
