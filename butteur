@@ -232,6 +232,9 @@ if __name__ == "__main__":
     parser = yacc.yacc(debug=1)
     tree = parser.parse(open(file_name, "r").read().decode("Utf-8"))
 
+    if file_name.endswith(".butt"):
+        file_name = file_name[:-len(".butt")]
+
     document = build_document(tree)
     result = generate_latex(document)
     open(file_name + ".tex", "w").write(result.encode("Utf-8"))
