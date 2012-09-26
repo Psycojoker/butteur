@@ -37,7 +37,7 @@ You'll need to have the command "pdflatex" available.
     \usepackage{fancyvrb}
     \usepackage{color}
     \usepackage{tikz}
-
+    \usetheme{Berlin}
     \begin{document}
     \title{the title of the document}
     \author{Myself master of the world}
