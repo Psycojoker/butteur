@@ -4,12 +4,11 @@
 
 import unittest
 from butteur import generate_tex
-from butteur.templates import base
+from test_results import empty
 
 class GenerateTests(unittest.TestCase):
     def test_empty(self):
-        assert generate_tex("") == base
-
+        assert generate_tex("") == empty
 
 
 if __name__ == "__main__":
