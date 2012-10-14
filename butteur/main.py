@@ -63,6 +63,9 @@ def tokenize(text):
     line_by_line = ByLines(text)
 
     for line_number, line in line_by_line:
+        if len(line.strip()) == 0:
+            continue
+
         keyword = line.split(" ")[0]
         if keyword == "slide":
             yield (keyword.upper(), line[len(keyword):].lstrip(), list(tokenize_slide(line_by_line)))
@@ -76,9 +79,12 @@ def tokenize(text):
 
 def tokenize_slide(line_by_line):
     for line_number, line in line_by_line:
+        if len(line.strip()) == 0:
+            continue
         if indentation(line) == 0:
             line_by_line.go_back()
             break
+
         yield ("LINE", line.lstrip())
 
 
