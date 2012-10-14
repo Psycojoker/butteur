@@ -18,10 +18,10 @@
 
 import sys
 import os
-
+import templates
 
 def generate_tex(text):
-    return ""
+    return templates.base
 
 
 def main():
