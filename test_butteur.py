@@ -3,17 +3,16 @@
 
 
 import pytest
-import unittest
 from butteur import generate_tex, tokenize, ButteurSyntaxError
 from test_results import empty
 
 
-class GenerateTests(unittest.TestCase):
+class TestGenerate:
     def test_empty(self):
         assert generate_tex("") == empty
 
 
-class TokenizesTests(unittest.TestCase):
+class TestTokenize:
     def test_empty(self):
         assert list(tokenize("")) == []
 
