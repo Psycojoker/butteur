@@ -52,7 +52,7 @@ class ByLines:
         self.position -= 1
 
 
-def generate_tex(text):
+def generate_latex(text):
     return templates.head + templates.begin + templates.end
 
 

@@ -3,13 +3,13 @@
 
 
 import pytest
-from butteur import generate_tex, tokenize, ButteurSyntaxError, indentation
+from butteur import generate_latex, tokenize, ButteurSyntaxError, indentation
 import test_results
 
 
 class TestGenerate:
     def test_empty(self):
-        assert generate_tex([]) == test_results.empty
+        assert generate_latex([]) == test_results.empty
 
 
 class TestTokenize:
