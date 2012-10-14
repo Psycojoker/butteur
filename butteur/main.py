@@ -45,7 +45,7 @@ def tokenize(text):
         elif keyword in KEYWORDS:
             yield (keyword.upper(), line[len(keyword):].lstrip())
         else:
-            raise ButteurSyntaxError("ERROR: '%s' is not a valid keyword on line %s, valid keywords are: %s" % (keyword, line_number, ", ".join(KEYWORDS)))
+            raise ButteurSyntaxError("ERROR: '%s' is not a valid keyword on line %s, valid keywords are: %s" % (keyword, line_number, "'" + "'" "', '".join(KEYWORDS) + "'"))
 
     return
 
