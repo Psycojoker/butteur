@@ -42,8 +42,11 @@ class TestTokenize:
 
     def test_slide_token(self):
         assert list(tokenize(
-            "slide the slide title")) == [("SLIDE", "the slide title", ())]
+            "slide the slide title")) == [("SLIDE", "the slide title", [])]
 
+    def test_slide_one_line(self):
+        assert list(tokenize("slide\n    the first line")) == [(
+            "SLIDE", "", [("LINE", "the first line")])]
 
 
 class TestIdentation:

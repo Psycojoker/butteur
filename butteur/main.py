@@ -46,13 +46,18 @@ def tokenize(text):
     for line_number, line in line_by_line:
         keyword = line.split(" ")[0]
         if keyword == "slide":
-            yield (keyword.upper(), line[len(keyword):].lstrip(), ())
+            yield (keyword.upper(), line[len(keyword):].lstrip(), list(tokenize_slide(line_by_line)))
         elif keyword in KEYWORDS:
             yield (keyword.upper(), line[len(keyword):].lstrip())
         else:
             raise ButteurSyntaxError("ERROR: '%s' is not a valid keyword on line %s, valid keywords are: %s" % (keyword, line_number, "'" + "'" "', '".join(KEYWORDS) + "'"))
 
     return
+
+
+def tokenize_slide(line_by_line):
+    for line_number, line in line_by_line:
+        yield ("LINE", line.lstrip())
 
 
 def indentation(line):
