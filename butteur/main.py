@@ -41,7 +41,9 @@ def tokenize(text):
     if not text.strip():
         return
 
-    for line_number, line in enumerate(text.split("\n"), start=1):
+    line_by_line = iter(enumerate(text.split("\n"), start=1))
+
+    for line_number, line in line_by_line:
         keyword = line.split(" ")[0]
         if keyword == "slide":
             yield (keyword.upper(), line[len(keyword):].lstrip(), ())
