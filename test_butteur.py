@@ -20,10 +20,12 @@ class TestTokenize:
         assert list(tokenize("title the title")) == [("TITLE", "the title")]
 
     def test_author(self):
-        assert list(tokenize("author me, myself and I")) == [("AUTHOR", "me, myself and I")]
+        assert list(tokenize(
+            "author me, myself and I")) == [("AUTHOR", "me, myself and I")]
 
     def test_title_author_order(self):
-        assert list(tokenize("title the title\nauthor me, myself and I")) == [("TITLE", "the title"), ("AUTHOR", "me, myself and I")]
+        assert list(tokenize("title the title\nauthor me, myself and I")) == [
+            ("TITLE", "the title"), ("AUTHOR", "me, myself and I")]
 
     def test_theme(self):
         assert list(tokenize("theme Berlin")) == [("THEME", "Berlin")]

@@ -28,7 +28,10 @@ KEYWORDS = (
     "slide",
 )
 
-class ButteurSyntaxError(Exception): pass
+
+class ButteurSyntaxError(Exception):
+    pass
+
 
 def generate_tex(text):
     return templates.base
