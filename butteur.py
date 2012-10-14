@@ -217,7 +217,7 @@ def generate_latex(document):
 
     return env.from_string(template).render(**document)
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) == 1:
         print "Give me a filename!"
         sys.exit(1)
@@ -231,3 +231,6 @@ if __name__ == "__main__":
     result = generate_latex(document)
     open(sys.argv[1] + ".tex", "w").write(result.encode("Utf-8"))
     os.system("pdflatex %s" % sys.argv[1] + ".tex")
+
+if __name__ == "__main__":
+    main()

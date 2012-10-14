@@ -12,8 +12,8 @@ setup(name='Butteur',
       url='https://github.com/Psycojoker/butteur',
       install_requires=['jinja2', 'ply'],
       license= 'gplv3+',
-      scripts=['butteur'],
       keywords='latex beamer preprocessor',
+      entry_points={'console_scripts': ['butteur = butteur:main']},
      )
 
 # vim:set shiftwidth=4 tabstop=4 expandtab:
