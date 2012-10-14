@@ -45,17 +45,17 @@ class TestTokenize:
             "slide the slide title")) == [("SLIDE", "the slide title", ())]
 
 
-def test_indentation_empty():
-    assert indentation("") == 0
 
+class TestIdentation:
+    def test_indentation_empty(self):
+        assert indentation("") == 0
 
-def test_indentation():
-    assert indentation("  a") == 2
+    def test_indentation(self):
+        assert indentation("  a") == 2
+        assert indentation("   a") == 3
 
+    def test_indentation_stip(self):
+        assert indentation("  ") == 0
 
-def test_indentation_stip():
-    assert indentation("  ") == 0
-
-
-def test_indentation_right_strip():
-    assert indentation("a  ") == 0
+    def test_indentation_right_strip(self):
+        assert indentation("a  ") == 0
