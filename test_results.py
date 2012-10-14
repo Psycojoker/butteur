@@ -6,7 +6,8 @@ empty = r"""
 \usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{tikz}
-\usetheme{default}
+
 \begin{document}
+
 \end{document}
 """

@@ -53,7 +53,7 @@ class ByLines:
 
 
 def generate_tex(text):
-    return templates.base
+    return templates.head + templates.begin + templates.end
 
 
 def tokenize(text):

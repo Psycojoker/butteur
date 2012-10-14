@@ -1,4 +1,4 @@
-base = r"""
+head = r"""
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage{verbatim}
@@ -6,7 +6,10 @@ base = r"""
 \usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{tikz}
-\usetheme{default}
+"""
+begin = r"""
 \begin{document}
+"""
+end = r"""
 \end{document}
 """

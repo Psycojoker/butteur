@@ -4,12 +4,12 @@
 
 import pytest
 from butteur import generate_tex, tokenize, ButteurSyntaxError, indentation
-from test_results import empty
+import test_results
 
 
 class TestGenerate:
     def test_empty(self):
-        assert generate_tex("") == empty
+        assert generate_tex("") == test_results.empty
 
 
 class TestTokenize:
