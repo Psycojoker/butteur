@@ -83,7 +83,7 @@ def tokenize_slide(line_by_line):
             continue
         if indentation(line) == 0:
             line_by_line.go_back()
-            break
+            return
 
         yield ("LINE", line.lstrip())
 
