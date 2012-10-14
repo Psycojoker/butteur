@@ -26,7 +26,13 @@ def generate_tex(text):
 
 
 def tokenize(text):
-    return []
+    if not text.strip():
+        return
+
+    for line in text.split("\n"):
+        keyword = line.split(" ")[0]
+        if keyword in ("title", "author"):
+            yield (keyword.upper(), line.split(" ", 1)[1])
 
 
 def main():
