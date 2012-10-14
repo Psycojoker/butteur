@@ -9,7 +9,7 @@ import test_results
 
 class TestGenerate:
     def test_empty(self):
-        assert generate_tex("") == test_results.empty
+        assert generate_tex([]) == test_results.empty
 
 
 class TestTokenize:
