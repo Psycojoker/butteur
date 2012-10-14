@@ -20,6 +20,10 @@ import sys
 import os
 
 
+def generate_tex(text):
+    return ""
+
+
 def main():
     if len(sys.argv) == 1:
         print "Give me a filename!"
