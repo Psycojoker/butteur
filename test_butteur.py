@@ -48,6 +48,9 @@ class TestTokenize:
         assert list(tokenize("slide\n    the first line")) == [(
             "SLIDE", "", [("LINE", "the first line")])]
 
+    def test_slide_deindent(self):
+        assert list(tokenize("slide\n  first line\ntitle not in slide")) == [("SLIDE", "", [("LINE", "first line")]), ("TITLE", "not in slide")]
+
 
 class TestIdentation:
     def test_indentation_empty(self):

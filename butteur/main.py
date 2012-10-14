@@ -33,6 +33,25 @@ class ButteurSyntaxError(Exception):
     pass
 
 
+class ByLines:
+    def __init__(self, text):
+        self.lines = text.split("\n")
+        self.position = -1
+
+    def next(self):
+        self.position += 1
+        if self.position >= len(self.lines):
+            raise StopIteration
+        return self.position + 1, self.lines[self.position]
+
+    def __iter__(self):
+        return self
+
+    def go_back(self):
+        "To use when we realised that we don't want to process this line"
+        self.position -= 1
+
+
 def generate_tex(text):
     return templates.base
 
@@ -41,7 +60,7 @@ def tokenize(text):
     if not text.strip():
         return
 
-    line_by_line = iter(enumerate(text.split("\n"), start=1))
+    line_by_line = ByLines(text)
 
     for line_number, line in line_by_line:
         keyword = line.split(" ")[0]
@@ -57,6 +76,9 @@ def tokenize(text):
 
 def tokenize_slide(line_by_line):
     for line_number, line in line_by_line:
+        if indentation(line) == 0:
+            line_by_line.go_back()
+            break
         yield ("LINE", line.lstrip())
 
 
