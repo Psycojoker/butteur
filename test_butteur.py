@@ -2,8 +2,9 @@
 # -*- coding:Utf-8 -*-
 
 
+import pytest
 import unittest
-from butteur import generate_tex, tokenize
+from butteur import generate_tex, tokenize, ButteurSyntaxError
 from test_results import empty
 
 
@@ -30,3 +31,7 @@ class TokenizesTests(unittest.TestCase):
 
     def test_package(self):
         assert list(tokenize("package tikz")) == [("PACKAGE", "tikz")]
+
+    def test_raise_invalid_keyword(self):
+        with pytest.raises(ButteurSyntaxError):
+            list(tokenize("badkeyword"))

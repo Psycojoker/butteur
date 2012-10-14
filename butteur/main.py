@@ -27,6 +27,8 @@ KEYWORDS =(
     "package",
 )
 
+class ButteurSyntaxError(Exception): pass
+
 def generate_tex(text):
     return templates.base
 
@@ -35,10 +37,12 @@ def tokenize(text):
     if not text.strip():
         return
 
-    for line in text.split("\n"):
+    for line_number, line in enumerate(text.split("\n"), start=1):
         keyword = line.split(" ")[0]
         if keyword in KEYWORDS:
             yield (keyword.upper(), line.split(" ", 1)[1])
+        else:
+            raise ButteurSyntaxError("ERROR: '%s' is not a valid keyword on line %s, valid keywords are: %s" % (keyword, line_number, ", ".join(KEYWORDS)))
 
     return
 
