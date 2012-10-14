@@ -55,6 +55,10 @@ def tokenize(text):
     return
 
 
+def indentation(line):
+    return len(line.rstrip()) - len(line.rstrip().lstrip())
+
+
 def main():
     if len(sys.argv) == 1:
         print "Give me a filename!"

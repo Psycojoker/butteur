@@ -3,7 +3,7 @@
 
 
 import pytest
-from butteur import generate_tex, tokenize, ButteurSyntaxError
+from butteur import generate_tex, tokenize, ButteurSyntaxError, indentation
 from test_results import empty
 
 
@@ -43,3 +43,19 @@ class TestTokenize:
     def test_slide_token(self):
         assert list(tokenize(
             "slide the slide title")) == [("SLIDE", "the slide title", ())]
+
+
+def test_indentation_empty():
+    assert indentation("") == 0
+
+
+def test_indentation():
+    assert indentation("  a") == 2
+
+
+def test_indentation_stip():
+    assert indentation("  ") == 0
+
+
+def test_indentation_right_strip():
+    assert indentation("a  ") == 0
