@@ -24,6 +24,7 @@ KEYWORDS =(
     "title",
     "author",
     "theme",
+    "package",
 )
 
 def generate_tex(text):

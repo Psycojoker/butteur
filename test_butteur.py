@@ -27,3 +27,6 @@ class TokenizesTests(unittest.TestCase):
 
     def test_theme(self):
         assert list(tokenize("theme Berlin")) == [("THEME", "Berlin")]
+
+    def test_package(self):
+        assert list(tokenize("package tikz")) == [("PACKAGE", "tikz")]
