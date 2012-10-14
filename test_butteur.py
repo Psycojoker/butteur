@@ -34,3 +34,6 @@ class TestTokenize:
     def test_raise_invalid_keyword(self):
         with pytest.raises(ButteurSyntaxError):
             list(tokenize("badkeyword"))
+
+    def test_empty_token(self):
+        assert list(tokenize("title")) == [("TITLE", "")]
