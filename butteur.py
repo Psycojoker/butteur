@@ -71,25 +71,30 @@ states = (
     ('content', 'exclusive'),
 )
 
+
 def t_TITLE(t):
     r'title .+'
     t.value = t.value[6:]
     return t
+
 
 def t_AUTHOR(t):
     r'author .+'
     t.value = t.value[7:]
     return t
 
+
 def t_THEME(t):
     r'theme .+'
     t.value = t.value[6:]
     return t
 
+
 def t_SLIDE(t):
     r'slide ?.+'
     t.value = t.value[6:]
     return t
+
 
 def t_content_LINE(t):
     r'\w.+'
@@ -98,24 +103,27 @@ def t_content_LINE(t):
     t.value = t.value
     return t
 
+
 def t_ANY_newline(t):
     r'\n\ *'
     indentation = len(t.value[1:])
     handle_indentation(t, indentation)
 
+
 def t_ANY_error(t):
     raise SyntaxError("Error on: '%s'" % t.value)
+
 
 def handle_indentation(t, indentation):
     # beeeeeh ugly zillion of conditions!
     if not indentation and not t.lexer.indentation:
-        return # nothing to do
+        return  # nothing to do
     elif indentation and not t.lexer.indentation:
         t.lexer.indentation.append(indentation)
         t.lexer.begin('content')
     elif indentation and t.lexer.indentation:
         if indentation == t.lexer.indentation[-1]:
-            pass # indentation doesn't change
+            pass  # indentation doesn't change
         elif indentation > t.lexer.indentation[-1]:
             t.lexer.indentation.append(indentation)
         elif indentation < t.lexer.indentation[-1]:
@@ -133,6 +141,7 @@ def handle_indentation(t, indentation):
 
 t_ANY_ignore = "\t"
 
+
 def p_result(p):
     'result : result expression'
     if isinstance(p[1], tuple):
@@ -140,46 +149,57 @@ def p_result(p):
     else:
         p[0] = p[1] + [p[2]]
 
+
 def p_result_expression(p):
     '''result : expression'''
     p[0] = [p[1]]
+
 
 def p_expression_title(p):
     'expression : TITLE'
     p[0] = ('title', p[1])
 
+
 def p_expression_author(p):
     'expression : AUTHOR'
     p[0] = ('author', p[1])
+
 
 def p_expression_theme(p):
     'expression : THEME'
     p[0] = ('theme', p[1])
 
+
 def p_expression_line(p):
     'expression : LINE'
     p[0] = ('line', p[1])
+
 
 def p_expression_slide(p):
     'expression : slide'
     p[0] = p[1]
 
+
 def p_side(p):
     'slide : SLIDE content'
     p[0] = ('slide', p[1], p[2])
+
 
 def p_content(p):
     'content : LINE content'
     p[0] = [p[1]] + p[2]
 
+
 def p_content_line(p):
     'content : LINE'
     p[0] = [p[1]]
+
 
 def p_error(p):
     print "Parsing failed"
     #from ipdb import set_trace; set_trace()
     print p
+
 
 def build_document(result):
     document = {
@@ -201,21 +221,23 @@ def build_document(result):
 
     return document
 
+
 def generate_latex(document):
     env = jinja2.Environment(
-        block_start_string = '\BLOCK{',
-        block_end_string = '}',
-        variable_start_string = '<',
-        variable_end_string = '>',
-        comment_start_string = '\#{',
-        comment_end_string = '}',
-        line_statement_prefix = '%-',
-        line_comment_prefix = '%#',
-        trim_blocks = True,
-        autoescape = False,
+        block_start_string='\BLOCK{',
+        block_end_string='}',
+        variable_start_string='<',
+        variable_end_string='>',
+        comment_start_string='\#{',
+        comment_end_string='}',
+        line_statement_prefix='%-',
+        line_comment_prefix='%#',
+        trim_blocks=True,
+        autoescape=False,
     )
 
     return env.from_string(template).render(**document)
+
 
 def main():
     if len(sys.argv) == 1:
@@ -231,6 +253,7 @@ def main():
     result = generate_latex(document)
     open(sys.argv[1] + ".tex", "w").write(result.encode("Utf-8"))
     os.system("pdflatex %s" % sys.argv[1] + ".tex")
+
 
 if __name__ == "__main__":
     main()
