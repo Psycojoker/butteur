@@ -20,6 +20,11 @@ import sys
 import os
 import templates
 
+KEYWORDS =(
+    "title",
+    "author",
+    "theme",
+)
 
 def generate_tex(text):
     return templates.base
@@ -31,8 +36,10 @@ def tokenize(text):
 
     for line in text.split("\n"):
         keyword = line.split(" ")[0]
-        if keyword in ("title", "author"):
+        if keyword in KEYWORDS:
             yield (keyword.upper(), line.split(" ", 1)[1])
+
+    return
 
 
 def main():

@@ -24,3 +24,6 @@ class TokenizesTests(unittest.TestCase):
 
     def test_title_author_order(self):
         assert list(tokenize("title the title\nauthor me, myself and I")) == [("TITLE", "the title"), ("AUTHOR", "me, myself and I")]
+
+    def test_theme(self):
+        assert list(tokenize("theme Berlin")) == [("THEME", "Berlin")]
