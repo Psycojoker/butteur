@@ -20,11 +20,12 @@ import sys
 import os
 import templates
 
-KEYWORDS =(
+KEYWORDS = (
     "title",
     "author",
     "theme",
     "package",
+    "slide",
 )
 
 class ButteurSyntaxError(Exception): pass
@@ -39,7 +40,9 @@ def tokenize(text):
 
     for line_number, line in enumerate(text.split("\n"), start=1):
         keyword = line.split(" ")[0]
-        if keyword in KEYWORDS:
+        if keyword == "slide":
+            yield (keyword.upper(), line[len(keyword):].lstrip(), ())
+        elif keyword in KEYWORDS:
             yield (keyword.upper(), line[len(keyword):].lstrip())
         else:
             raise ButteurSyntaxError("ERROR: '%s' is not a valid keyword on line %s, valid keywords are: %s" % (keyword, line_number, ", ".join(KEYWORDS)))

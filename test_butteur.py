@@ -37,3 +37,7 @@ class TestTokenize:
 
     def test_empty_token(self):
         assert list(tokenize("title")) == [("TITLE", "")]
+
+    def test_slide_token(self):
+        assert list(tokenize(
+            "slide the slide title")) == [("SLIDE", "the slide title", ())]
