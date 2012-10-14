@@ -20,8 +20,13 @@ import sys
 import os
 import templates
 
+
 def generate_tex(text):
     return templates.base
+
+
+def tokenize(text):
+    return []
 
 
 def main():
