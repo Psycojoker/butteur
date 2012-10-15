@@ -24,6 +24,10 @@ class TestGenerate:
     def test_render_theme(self):
         assert render_token(("THEME", "Berlin")) == r"\usetheme{Berlin}"
 
+    def test_render_package(self):
+        assert render_token(("PACKAGE", "tikz")) == r"\usepackage{tikz}"
+
+
 class TestTokenize:
     def test_empty(self):
         assert list(tokenize("")) == []
