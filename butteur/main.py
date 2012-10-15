@@ -97,6 +97,8 @@ def render_token(token):
         return r"\usetheme{%s}" % token[1]
     elif token[0] == "PACKAGE":
         return r"\usepackage{%s}" % token[1]
+    elif token[0] == "SLIDE":
+        return r"\begin{frame}{}\n\end{frame}"
     return r"\title{%s}" % token[1]
 
 
