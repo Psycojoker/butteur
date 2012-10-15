@@ -3,13 +3,20 @@
 
 
 import pytest
-from butteur import generate_latex, tokenize, ButteurSyntaxError, indentation
+from butteur import generate_latex, tokenize, ButteurSyntaxError, indentation, render_token
 import test_results
 
 
 class TestGenerate:
     def test_empty(self):
         assert generate_latex([]) == test_results.empty
+
+    def test_render_empty(self):
+        assert render_token(tuple()) == ""
+
+    def test_render_title(self):
+        assert render_token(("TITLE", "the title")) == r"\title{the title}"
+        assert render_token(("TITLE", "another title")) == r"\title{another title}"
 
 
 class TestTokenize:

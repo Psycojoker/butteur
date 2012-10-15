@@ -88,6 +88,12 @@ def tokenize_slide(line_by_line):
         yield ("LINE", line.lstrip())
 
 
+def render_token(token):
+    if not token:
+        return ""
+    return r"\title{%s}" % token[1]
+
+
 def indentation(line):
     return len(line.rstrip()) - len(line.rstrip().lstrip())
 
