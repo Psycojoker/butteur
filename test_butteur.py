@@ -30,6 +30,9 @@ class TestGenerate:
     def test_render_empty_slide(self):
         assert render_token(("SLIDE", "", [])) == r"\begin{frame}{}\n\end{frame}"
 
+    def test_render_slide_with_title(self):
+        assert render_token(("SLIDE", "title", [])) == r"\begin{frame}{title}\n\end{frame}"
+
 
 class TestTokenize:
     def test_empty(self):
