@@ -98,8 +98,12 @@ def render_token(token):
     elif token[0] == "PACKAGE":
         return r"\usepackage{%s}" % token[1]
     elif token[0] == "SLIDE":
-        return r"\begin{frame}{%s}\n\end{frame}" % token[1]
+        return r"\begin{frame}{%s}\n%s\end{frame}" % (token[1], render_slide_body(token[2]))
     return r"\title{%s}" % token[1]
+
+
+def render_slide_body(tokens):
+    return r"\n\n".join(map(lambda x: "    " + x[1], tokens))
 
 
 def indentation(line):

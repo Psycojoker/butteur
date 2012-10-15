@@ -33,6 +33,9 @@ class TestGenerate:
     def test_render_slide_with_title(self):
         assert render_token(("SLIDE", "title", [])) == r"\begin{frame}{title}\n\end{frame}"
 
+    def test_render_slide_with_content(self):
+        assert render_token(("SLIDE", "title", [("LINE", "first line"), ("LINE", "second line")])) == r"\begin{frame}{title}\n    first line\n\n    second line\end{frame}"
+
 
 class TestTokenize:
     def test_empty(self):
