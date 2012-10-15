@@ -18,6 +18,11 @@ class TestGenerate:
         assert render_token(("TITLE", "the title")) == r"\title{the title}"
         assert render_token(("TITLE", "another title")) == r"\title{another title}"
 
+    def test_render_author(self):
+        assert render_token(("AUTHOR", "the author")) == r"\author{the author}"
+
+    def test_render_theme(self):
+        assert render_token(("THEME", "Berlin")) == r"\usetheme{Berlin}"
 
 class TestTokenize:
     def test_empty(self):

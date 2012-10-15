@@ -91,6 +91,10 @@ def tokenize_slide(line_by_line):
 def render_token(token):
     if not token:
         return ""
+    if token[0] == "AUTHOR":
+        return r"\author{%s}" % token[1]
+    elif token[0] == "THEME":
+        return r"\usetheme{%s}" % token[1]
     return r"\title{%s}" % token[1]
 
 
